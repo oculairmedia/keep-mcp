@@ -46,6 +46,20 @@ By default, all destructive and modification operations are restricted to notes 
 }
 ```
 
+## Publishing
+
+To publish a new version to PyPI:
+
+1. Update the version in `pyproject.toml`
+2. Build the package:
+   ```bash
+   pipx run build
+   ```
+3. Upload to PyPI:
+   ```bash
+   pipx run twine upload --repository pypi dist/*
+   ```
+
 ## Troubleshooting
 
 * If you get "DeviceManagementRequiredOrSyncDisabled" check https://admin.google.com/ac/devices/settings/general and turn "Turn off mobile management (Unmanaged)"
