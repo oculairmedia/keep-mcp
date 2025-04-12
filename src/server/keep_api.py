@@ -25,7 +25,7 @@ def get_client():
     master_token = os.getenv('GOOGLE_MASTER_TOKEN')
     
     if not email or not master_token:
-        raise ValueError("Missing credentials in environment variables")
+        raise ValueError("Missing Google Keep credentials. Please set GOOGLE_EMAIL and GOOGLE_MASTER_TOKEN environment variables.")
     
     # Initialize the Keep API
     keep = gkeepapi.Keep()
@@ -36,4 +36,23 @@ def get_client():
     # Store the client for reuse
     _keep_client = keep
     
-    return keep 
+    return keep
+
+def serialize_note(note):
+    """
+    Serialize a Google Keep note into a dictionary.
+    
+    Args:
+        note: A Google Keep note object
+        
+    Returns:
+        dict: A dictionary containing the note's id, title, text, pinned status, color and labels
+    """
+    return {
+        'id': note.id,
+        'title': note.title,
+        'text': note.text,
+        'pinned': note.pinned,
+        'color': note.color.value if note.color else None,
+        'labels': [{'id': label.id, 'name': label.name} for label in note.labels.all()]
+    } 

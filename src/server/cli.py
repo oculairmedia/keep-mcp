@@ -5,7 +5,7 @@ Provides tools for interacting with Google Keep notes through MCP.
 
 import json
 from mcp.server.fastmcp import FastMCP
-from .keep_api import get_client
+from .keep_api import get_client, serialize_note
 
 mcp = FastMCP("keep")
 
@@ -23,18 +23,7 @@ def find(query="") -> str:
     keep = get_client()
     notes = keep.find(query=query, archived=False, trashed=False)
     
-    notes_data = []
-    for note in notes:
-        note_data = {
-            'id': note.id,
-            'title': note.title,
-            'text': note.text,
-            'pinned': note.pinned,
-            'color': note.color.value if note.color else None,
-            'labels': [{'id': label.id, 'name': label.name} for label in note.labels.all()]
-        }
-        notes_data.append(note_data)
-    
+    notes_data = [serialize_note(note) for note in notes]
     return json.dumps(notes_data)
 
 
