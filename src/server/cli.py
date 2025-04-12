@@ -5,7 +5,7 @@ Provides tools for interacting with Google Keep notes through MCP.
 
 import json
 from mcp.server.fastmcp import FastMCP
-from .keep_api import get_client, serialize_note, has_keep_mcp_label
+from .keep_api import get_client, serialize_note, can_modify_note
 
 mcp = FastMCP("keep")
 
@@ -66,7 +66,7 @@ def update_note(note_id: str, title: str = None, text: str = None) -> str:
         str: JSON string containing the updated note's data
         
     Raises:
-        ValueError: If the note doesn't exist or doesn't have the keep-mcp label
+        ValueError: If the note doesn't exist or cannot be modified
     """
     keep = get_client()
     note = keep.get(note_id)
@@ -74,8 +74,8 @@ def update_note(note_id: str, title: str = None, text: str = None) -> str:
     if not note:
         raise ValueError(f"Note with ID {note_id} not found")
     
-    if not has_keep_mcp_label(note):
-        raise ValueError(f"Note with ID {note_id} does not have the keep-mcp label")
+    if not can_modify_note(note):
+        raise ValueError(f"Note with ID {note_id} cannot be modified (missing keep-mcp label and UNSAFE_MODE is not enabled)")
     
     if title is not None:
         note.title = title
@@ -97,7 +97,7 @@ def delete_note(note_id: str) -> str:
         str: Success message
         
     Raises:
-        ValueError: If the note doesn't exist or doesn't have the keep-mcp label
+        ValueError: If the note doesn't exist or cannot be modified
     """
     keep = get_client()
     note = keep.get(note_id)
@@ -105,8 +105,8 @@ def delete_note(note_id: str) -> str:
     if not note:
         raise ValueError(f"Note with ID {note_id} not found")
     
-    if not has_keep_mcp_label(note):
-        raise ValueError(f"Note with ID {note_id} does not have the keep-mcp label")
+    if not can_modify_note(note):
+        raise ValueError(f"Note with ID {note_id} cannot be modified (missing keep-mcp label and UNSAFE_MODE is not enabled)")
     
     note.delete()
     keep.sync()  # Ensure deletion is saved to the server

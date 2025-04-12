@@ -57,6 +57,19 @@ def serialize_note(note):
         'labels': [{'id': label.id, 'name': label.name} for label in note.labels.all()]
     }
 
+def can_modify_note(note):
+    """
+    Check if a note can be modified based on label and environment settings.
+    
+    Args:
+        note: A Google Keep note object
+        
+    Returns:
+        bool: True if the note can be modified, False otherwise
+    """
+    unsafe_mode = os.getenv('UNSAFE_MODE', '').lower() == 'true'
+    return unsafe_mode or has_keep_mcp_label(note)
+
 def has_keep_mcp_label(note):
     """
     Check if a note has the keep-mcp label.
