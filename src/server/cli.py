@@ -9,64 +9,25 @@ from .keep_api import get_client
 
 mcp = FastMCP("keep")
 
-@mcp.resource("greeting://{name}")
-def get_greeting(name: str) -> str:
-    """Get a personalized greeting"""
-    return f"Hello, {name}!"
-
-@mcp.resource("notes://all")
-def get_all_notes() -> str:
-    """Get all Google Keep notes as a resource"""
-    keep = get_client()
-    notes = keep.all()
-    
-    # Convert notes to a serializable format
-    notes_data = []
-    for note in notes:
-        notes_data.append({
-            'id': note.id,
-            'title': note.title,
-            'text': note.text,
-            'pinned': note.pinned,
-            'archived': note.archived,
-            'color': note.color.value if note.color else None,
-            'labels': [label.name for label in note.labels.all()]
-        })
-    
-    return json.dumps(notes_data)
-
 @mcp.tool()
-def create_keep_note(title: str, text: str, pinned: bool = False) -> str:
+def find(query=None, labels=None, colors=None, pinned=None, archived=None, trashed=False) -> str:
     """
-    Create a new Google Keep note.
+    Find notes based on various criteria.
     
     Args:
-        title (str): The title of the note
-        text (str): The content of the note
-        pinned (bool, optional): Whether the note should be pinned. Defaults to False.
+        query (str, optional): A string to match against the title and text
+        labels (list, optional): A list of label IDs to match
+        colors (list, optional): A list of colors to match
+        pinned (bool, optional): Whether to match pinned notes
+        archived (bool, optional): Whether to match archived notes
+        trashed (bool, optional): Whether to match trashed notes (default: False)
         
     Returns:
-        str: JSON string containing the created note's data
+        str: JSON string containing the matching notes
     """
     keep = get_client()
-    
-    # Create a new note
-    note = keep.createNote(title, text)
-    note.pinned = pinned
-    
-    # Sync changes
-    keep.sync()
-    
-    # Return the created note's data
-    return json.dumps({
-        'id': note.id,
-        'title': note.title,
-        'text': note.text,
-        'pinned': note.pinned,
-        'archived': note.archived,
-        'color': note.color.value if note.color else None,
-        'labels': [label.name for label in note.labels.all()]
-    })
+    notes = keep.find(query=query, labels=labels, colors=colors, pinned=pinned, archived=archived, trashed=trashed)
+    return notes
 
 
 def main():
