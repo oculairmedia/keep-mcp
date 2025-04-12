@@ -55,4 +55,16 @@ def serialize_note(note):
         'pinned': note.pinned,
         'color': note.color.value if note.color else None,
         'labels': [{'id': label.id, 'name': label.name} for label in note.labels.all()]
-    } 
+    }
+
+def has_keep_mcp_label(note):
+    """
+    Check if a note has the keep-mcp label.
+    
+    Args:
+        note: A Google Keep note object
+        
+    Returns:
+        bool: True if the note has the keep-mcp label, False otherwise
+    """
+    return any(label.name == 'keep-mcp' for label in note.labels.all()) 

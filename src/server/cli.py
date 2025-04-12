@@ -5,7 +5,7 @@ Provides tools for interacting with Google Keep notes through MCP.
 
 import json
 from mcp.server.fastmcp import FastMCP
-from .keep_api import get_client, serialize_note
+from .keep_api import get_client, serialize_note, has_keep_mcp_label
 
 mcp = FastMCP("keep")
 
@@ -51,6 +51,72 @@ def create_note(title: str = None, text: str = None) -> str:
     keep.sync()  # Ensure the note is created and labeled on the server
     
     return json.dumps(serialize_note(note))
+
+@mcp.tool()
+def update_note(note_id: str, title: str = None, text: str = None, pinned: bool = None, color: str = None) -> str:
+    """
+    Update a note's properties.
+    
+    Args:
+        note_id (str): The ID of the note to update
+        title (str, optional): New title for the note
+        text (str, optional): New text content for the note
+        pinned (bool, optional): New pinned status
+        color (str, optional): New color for the note
+        
+    Returns:
+        str: JSON string containing the updated note's data
+        
+    Raises:
+        ValueError: If the note doesn't exist or doesn't have the keep-mcp label
+    """
+    keep = get_client()
+    note = keep.get(note_id)
+    
+    if not note:
+        raise ValueError(f"Note with ID {note_id} not found")
+    
+    if not has_keep_mcp_label(note):
+        raise ValueError(f"Note with ID {note_id} does not have the keep-mcp label")
+    
+    if title is not None:
+        note.title = title
+    if text is not None:
+        note.text = text
+    if pinned is not None:
+        note.pinned = pinned
+    if color is not None:
+        note.color = color
+    
+    keep.sync()  # Ensure changes are saved to the server
+    return json.dumps(serialize_note(note))
+
+@mcp.tool()
+def delete_note(note_id: str) -> str:
+    """
+    Delete a note (mark for deletion).
+    
+    Args:
+        note_id (str): The ID of the note to delete
+        
+    Returns:
+        str: Success message
+        
+    Raises:
+        ValueError: If the note doesn't exist or doesn't have the keep-mcp label
+    """
+    keep = get_client()
+    note = keep.get(note_id)
+    
+    if not note:
+        raise ValueError(f"Note with ID {note_id} not found")
+    
+    if not has_keep_mcp_label(note):
+        raise ValueError(f"Note with ID {note_id} does not have the keep-mcp label")
+    
+    note.delete()
+    keep.sync()  # Ensure deletion is saved to the server
+    return json.dumps({"message": f"Note {note_id} marked for deletion"})
 
 def main():
     mcp.run(transport='stdio')
