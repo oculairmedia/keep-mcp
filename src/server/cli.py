@@ -10,24 +10,32 @@ from .keep_api import get_client
 mcp = FastMCP("keep")
 
 @mcp.tool()
-def find(query=None, labels=None, colors=None, pinned=None, archived=None, trashed=False) -> str:
+def find(query="") -> str:
     """
-    Find notes based on various criteria.
+    Find notes based on a search query.
     
     Args:
         query (str, optional): A string to match against the title and text
-        labels (list, optional): A list of label IDs to match
-        colors (list, optional): A list of colors to match
-        pinned (bool, optional): Whether to match pinned notes
-        archived (bool, optional): Whether to match archived notes
-        trashed (bool, optional): Whether to match trashed notes (default: False)
         
     Returns:
-        str: JSON string containing the matching notes
+        str: JSON string containing the matching notes with their id, title, text, pinned status, color and labels
     """
     keep = get_client()
-    notes = keep.find(query=query, labels=labels, colors=colors, pinned=pinned, archived=archived, trashed=trashed)
-    return notes
+    notes = keep.find(query=query, archived=False, trashed=False)
+    
+    notes_data = []
+    for note in notes:
+        note_data = {
+            'id': note.id,
+            'title': note.title,
+            'text': note.text,
+            'pinned': note.pinned,
+            'color': note.color.value if note.color else None,
+            'labels': [{'id': label.id, 'name': label.name} for label in note.labels.all()]
+        }
+        notes_data.append(note_data)
+    
+    return json.dumps(notes_data)
 
 
 def main():
