@@ -53,7 +53,7 @@ def create_note(title: str = None, text: str = None) -> str:
     return json.dumps(serialize_note(note))
 
 @mcp.tool()
-def update_note(note_id: str, title: str = None, text: str = None, pinned: bool = None, color: str = None) -> str:
+def update_note(note_id: str, title: str = None, text: str = None) -> str:
     """
     Update a note's properties.
     
@@ -61,8 +61,6 @@ def update_note(note_id: str, title: str = None, text: str = None, pinned: bool 
         note_id (str): The ID of the note to update
         title (str, optional): New title for the note
         text (str, optional): New text content for the note
-        pinned (bool, optional): New pinned status
-        color (str, optional): New color for the note
         
     Returns:
         str: JSON string containing the updated note's data
@@ -83,10 +81,6 @@ def update_note(note_id: str, title: str = None, text: str = None, pinned: bool 
         note.title = title
     if text is not None:
         note.text = text
-    if pinned is not None:
-        note.pinned = pinned
-    if color is not None:
-        note.color = color
     
     keep.sync()  # Ensure changes are saved to the server
     return json.dumps(serialize_note(note))
