@@ -3,8 +3,9 @@ MCP plugin for Google Keep integration.
 Provides tools for interacting with Google Keep notes through MCP.
 """
 
+import json
 from mcp.server.fastmcp import FastMCP
-from .keep_api import get_notes, create_note
+from .keep_api import get_client
 
 mcp = FastMCP("keep")
 
@@ -16,7 +17,23 @@ def get_greeting(name: str) -> str:
 @mcp.resource("notes://all")
 def get_all_notes() -> str:
     """Get all Google Keep notes as a resource"""
-    return get_notes()
+    keep = get_client()
+    notes = keep.all()
+    
+    # Convert notes to a serializable format
+    notes_data = []
+    for note in notes:
+        notes_data.append({
+            'id': note.id,
+            'title': note.title,
+            'text': note.text,
+            'pinned': note.pinned,
+            'archived': note.archived,
+            'color': note.color.value if note.color else None,
+            'labels': [label.name for label in note.labels.all()]
+        })
+    
+    return json.dumps(notes_data)
 
 @mcp.tool()
 def create_keep_note(title: str, text: str, pinned: bool = False) -> str:
@@ -31,7 +48,25 @@ def create_keep_note(title: str, text: str, pinned: bool = False) -> str:
     Returns:
         str: JSON string containing the created note's data
     """
-    return create_note(title, text, pinned)
+    keep = get_client()
+    
+    # Create a new note
+    note = keep.createNote(title, text)
+    note.pinned = pinned
+    
+    # Sync changes
+    keep.sync()
+    
+    # Return the created note's data
+    return json.dumps({
+        'id': note.id,
+        'title': note.title,
+        'text': note.text,
+        'pinned': note.pinned,
+        'archived': note.archived,
+        'color': note.color.value if note.color else None,
+        'labels': [label.name for label in note.labels.all()]
+    })
 
 
 def main():
