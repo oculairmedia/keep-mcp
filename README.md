@@ -30,6 +30,22 @@ MCP server for Google Keep
 
 Check https://gkeepapi.readthedocs.io/en/latest/#obtaining-a-master-token and https://github.com/simon-weber/gpsoauth?tab=readme-ov-file#alternative-flow for more information.
 
+## Features
+
+* `find`: Search for notes based on a query string
+* `create_note`: Create a new note with title and text (automatically adds keep-mcp label)
+* `update_note`: Update a note's title and text
+* `delete_note`: Mark a note for deletion
+
+By default, all destructive and modification operations are restricted to notes that have were created by the MCP server (i.e. have the keep-mcp label). Set `UNSAFE_MODE` to `true` to bypass this restriction.
+
+```
+"env": {
+  ...
+  "UNSAFE_MODE": "true"
+}
+```
+
 ## Troubleshooting
 
 * If you get "DeviceManagementRequiredOrSyncDisabled" check https://admin.google.com/ac/devices/settings/general and turn "Turn off mobile management (Unmanaged)"
