@@ -1,0 +1,46 @@
+services:
+  keep-mcp:
+    build: .
+    container_name: keep-mcp-server
+    ports:
+      - "${MCP_PORT:-8000}:8000"
+    environment:
+      - MCP_HOST=0.0.0.0
+      - MCP_PORT=8000
+      - MCP_PATH=/mcp
+      - GOOGLE_EMAIL=${GOOGLE_EMAIL}
+      - GOOGLE_MASTER_TOKEN=${GOOGLE_MASTER_TOKEN}
+      - UNSAFE_MODE=${UNSAFE_MODE:-false}
+    volumes:
+      - ./data:/app/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    restart: unless-stopped
+
+  keep-rest-api:
+    build: .
+    container_name: keep-rest-api
+    ports:
+      - "${REST_API_PORT:-8001}:8001"
+    environment:
+      - REST_API_HOST=0.0.0.0
+      - REST_API_PORT=8001
+      - GOOGLE_EMAIL=${GOOGLE_EMAIL}
+      - GOOGLE_MASTER_TOKEN=${GOOGLE_MASTER_TOKEN}
+      - UNSAFE_MODE=${UNSAFE_MODE:-false}
+    volumes:
+      - ./data:/app/data
+    command: ["bash", "/app/start_rest_api.sh"]
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    restart: unless-stopped
+    depends_on:
+      - keep-mcp
