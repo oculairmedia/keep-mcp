@@ -1,0 +1,563 @@
+{
+  "projectId": "GKMCP",
+  "version": 1,
+  "updatedAt": 1769589353406,
+  "files": {
+    "alternative_auth.py": {
+      "path": "alternative_auth.py",
+      "contentHash": "a007eddeb0c99eee1c918b394addead7",
+      "mtime": 1751096818817.042,
+      "functions": [
+        {
+          "name": "browser_auth_guide",
+          "signature": "def browser_auth_guide()",
+          "parameters": "()",
+          "return_type": null,
+          "docstring": null,
+          "decorators": [],
+          "start_line": 10,
+          "end_line": 39,
+          "is_async": false
+        }
+      ],
+      "parsedAt": 1769589321587
+    },
+    "alternative_auth_flow.py": {
+      "path": "alternative_auth_flow.py",
+      "contentHash": "d1b6f92b54a982b773125951c2e756d9",
+      "mtime": 1751097032366.5508,
+      "functions": [
+        {
+          "name": "get_oauth_token_instructions",
+          "signature": "def get_oauth_token_instructions()",
+          "parameters": "()",
+          "return_type": null,
+          "docstring": "Provide step-by-step instructions to get oauth_token",
+          "decorators": [],
+          "start_line": 11,
+          "end_line": 42,
+          "is_async": false
+        },
+        {
+          "name": "ive_auth():\n    ",
+          "signature": "def ive_auth():\n    \"\"",
+          "parameters": "\"\"",
+          "return_type": null,
+          "docstring": "rm alternative authentication using oauth_token\"\"\"\n    ema",
+          "decorators": [],
+          "start_line": 44,
+          "end_line": 109,
+          "is_async": false
+        },
+        {
+          "name": " if saved credentials ",
+          "signature": "def  if saved credentials wo",
+          "parameters": "wo",
+          "return_type": null,
+          "docstring": "try:\n        from src.server.kee",
+          "decorators": [],
+          "start_line": 111,
+          "end_line": 124,
+          "is_async": false
+        }
+      ],
+      "parsedAt": 1769589321587
+    },
+    "debug_auth.py": {
+      "path": "debug_auth.py",
+      "contentHash": "bbb6ecf1f7509910bb1e2968dba45488",
+      "mtime": 1751096791452.3362,
+      "functions": [
+        {
+          "name": "debug_auth",
+          "signature": "def debug_auth()",
+          "parameters": "()",
+          "return_type": null,
+          "docstring": null,
+          "decorators": [],
+          "start_line": 10,
+          "end_line": 63,
+          "is_async": false
+        }
+      ],
+      "parsedAt": 1769589321587
+    },
+    "final_auth_solution.py": {
+      "path": "final_auth_solution.py",
+      "contentHash": "b0afefffa68e24dfdd1e4b84981c915b",
+      "mtime": 1751096897379.0686,
+      "functions": [
+        {
+          "name": "test_auth_methods",
+          "signature": "def test_auth_methods()",
+          "parameters": "()",
+          "return_type": null,
+          "docstring": null,
+          "decorators": [],
+          "start_line": 9,
+          "end_line": 76,
+          "is_async": false
+        }
+      ],
+      "parsedAt": 1769589321587
+    },
+    "get_master_token.py": {
+      "path": "get_master_token.py",
+      "contentHash": "cf42b204bd613aea76674020b0211db2",
+      "mtime": 1751096471279.9841,
+      "functions": [
+        {
+          "name": "get_master_token",
+          "signature": "def get_master_token()",
+          "parameters": "()",
+          "return_type": null,
+          "docstring": "Get Google Master Token interactively.",
+          "decorators": [],
+          "start_line": 18,
+          "end_line": 73,
+          "is_async": false
+        }
+      ],
+      "parsedAt": 1769589321587
+    },
+    "get_token_for_user.py": {
+      "path": "get_token_for_user.py",
+      "contentHash": "2087f98f78d77e293f5899d2a22137c2",
+      "mtime": 1751096547289.9888,
+      "functions": [
+        {
+          "name": "get_master_token_for_user",
+          "signature": "def get_master_token_for_user()",
+          "parameters": "()",
+          "return_type": null,
+          "docstring": null,
+          "decorators": [],
+          "start_line": 10,
+          "end_line": 62,
+          "is_async": false
+        }
+      ],
+      "parsedAt": 1769589321587
+    },
+    "get_token_with_app_password.py": {
+      "path": "get_token_with_app_password.py",
+      "contentHash": "347dd785649691aadf160cc0aca65f85",
+      "mtime": 1751096875970.5164,
+      "functions": [
+        {
+          "name": "get_token",
+          "signature": "def get_token()",
+          "parameters": "()",
+          "return_type": null,
+          "docstring": null,
+          "decorators": [],
+          "start_line": 8,
+          "end_line": 55,
+          "is_async": false
+        }
+      ],
+      "parsedAt": 1769589321591
+    },
+    "mock_keep_server.py": {
+      "path": "mock_keep_server.py",
+      "contentHash": "c68ce857df42fd2434e3f99570a862d1",
+      "mtime": 1751096923771.7495,
+      "functions": [
+        {
+          "name": "find",
+          "signature": "def find(query=\"\") -> str",
+          "parameters": "(query=\"\")",
+          "return_type": "str",
+          "docstring": "Find mock notes based on query.",
+          "decorators": [
+            "@mcp.tool()"
+          ],
+          "start_line": 33,
+          "end_line": 36,
+          "is_async": false
+        },
+        {
+          "name": "create_note",
+          "signature": "def create_note(title: str = None, text: str = None) -> str",
+          "parameters": "(title: str = None, text: str = None)",
+          "return_type": "str",
+          "docstring": "Create a mock note.",
+          "decorators": [
+            "@mcp.tool()"
+          ],
+          "start_line": 39,
+          "end_line": 50,
+          "is_async": false
+        },
+        {
+          "name": "update_note",
+          "signature": "def update_note(note_id: str, title: str = None, text: str = None) -> str",
+          "parameters": "(note_id: str, title: str = None, text: str = None)",
+          "return_type": "str",
+          "docstring": "Update a mock note.",
+          "decorators": [
+            "@mcp.tool()"
+          ],
+          "start_line": 53,
+          "end_line": 62,
+          "is_async": false
+        },
+        {
+          "name": "delete_note",
+          "signature": "def delete_note(note_id: str) -> str",
+          "parameters": "(note_id: str)",
+          "return_type": "str",
+          "docstring": "Delete a mock note.",
+          "decorators": [
+            "@mcp.tool()"
+          ],
+          "start_line": 65,
+          "end_line": 69,
+          "is_async": false
+        },
+        {
+          "name": "main",
+          "signature": "def main()",
+          "parameters": "()",
+          "return_type": null,
+          "docstring": null,
+          "decorators": [],
+          "start_line": 71,
+          "end_line": 77,
+          "is_async": true
+        }
+      ],
+      "parsedAt": 1769589321591
+    },
+    "src/server/cli.py": {
+      "path": "src/server/cli.py",
+      "contentHash": "6a5fa73244f1fff3385c73e022fc0df0",
+      "mtime": 1751099072415.1238,
+      "functions": [
+        {
+          "name": "find",
+          "signature": "def find(query=\"\") -> str",
+          "parameters": "(query=\"\")",
+          "return_type": "str",
+          "docstring": "Find notes based on a search query.\n    \n    Args:\n        query (str, optional): A string to match against the title and text\n        \n    Returns:\n        str: JSON string containing the matching notes with their id, title, text, pinned status, color and labels",
+          "decorators": [
+            "@mcp.tool()"
+          ],
+          "start_line": 15,
+          "end_line": 29,
+          "is_async": false
+        },
+        {
+          "name": "create_note",
+          "signature": "def create_note(title: str = None, text: str = None) -> str",
+          "parameters": "(title: str = None, text: str = None)",
+          "return_type": "str",
+          "docstring": "Create a new note with title and text.\n    \n    Args:\n        title (str, optional): The title of the note\n        text (str, optional): The content of the note\n        \n    Returns:\n        str: JSON string containing the created note's data",
+          "decorators": [
+            "@mcp.tool()"
+          ],
+          "start_line": 32,
+          "end_line": 55,
+          "is_async": false
+        },
+        {
+          "name": "update_note",
+          "signature": "def update_note(note_id: str, title: str = None, text: str = None) -> str",
+          "parameters": "(note_id: str, title: str = None, text: str = None)",
+          "return_type": "str",
+          "docstring": "Update a note's properties.\n    \n    Args:\n        note_id (str): The ID of the note to update\n        title (str, optional): New title for the note\n        text (str, optional): New text content for the note\n        \n    Returns:\n        str: JSON string containing the updated note's data\n        \n    Raises:\n        ValueError: If the note doesn't exist or cannot be modified",
+          "decorators": [
+            "@mcp.tool()"
+          ],
+          "start_line": 58,
+          "end_line": 88,
+          "is_async": false
+        },
+        {
+          "name": "delete_note",
+          "signature": "def delete_note(note_id: str) -> str",
+          "parameters": "(note_id: str)",
+          "return_type": "str",
+          "docstring": "Delete a note (mark for deletion).\n    \n    Args:\n        note_id (str): The ID of the note to delete\n        \n    Returns:\n        str: Success message\n        \n    Raises:\n        ValueError: If the note doesn't exist or cannot be modified",
+          "decorators": [
+            "@mcp.tool()"
+          ],
+          "start_line": 91,
+          "end_line": 115,
+          "is_async": false
+        },
+        {
+          "name": "main",
+          "signature": "def main()",
+          "parameters": "()",
+          "return_type": null,
+          "docstring": "Main entry point with transport selection support.",
+          "decorators": [],
+          "start_line": 117,
+          "end_line": 152,
+          "is_async": true
+        },
+        {
+          "name": "main_sync",
+          "signature": "def main_sync()",
+          "parameters": "()",
+          "return_type": null,
+          "docstring": "Synchronous wrapper for backward compatibility.",
+          "decorators": [],
+          "start_line": 154,
+          "end_line": 156,
+          "is_async": false
+        }
+      ],
+      "parsedAt": 1769589321592
+    },
+    "src/server/http_server.py": {
+      "path": "src/server/http_server.py",
+      "contentHash": "48d74a48aaea63db0ca8d1368d249449",
+      "mtime": 1751099066070.9602,
+      "functions": [
+        {
+          "name": "run_http_server",
+          "signature": "def run_http_server()",
+          "parameters": "()",
+          "return_type": null,
+          "docstring": "Run the Google Keep MCP server with HTTP transport.",
+          "decorators": [],
+          "start_line": 18,
+          "end_line": 42,
+          "is_async": true
+        }
+      ],
+      "parsedAt": 1769589321592
+    },
+    "src/server/keep_api.py": {
+      "path": "src/server/keep_api.py",
+      "contentHash": "2fd7562a626f22e3863f043243f16f0b",
+      "mtime": 1751096015315.959,
+      "functions": [
+        {
+          "name": "get_client",
+          "signature": "def get_client()",
+          "parameters": "()",
+          "return_type": null,
+          "docstring": "Get or initialize the Google Keep client.\n    This ensures we only authenticate once and reuse the client.\n    \n    Returns:\n        gkeepapi.Keep: Authenticated Keep client",
+          "decorators": [],
+          "start_line": 7,
+          "end_line": 39,
+          "is_async": false
+        },
+        {
+          "name": "serialize_note",
+          "signature": "def serialize_note(note)",
+          "parameters": "(note)",
+          "return_type": null,
+          "docstring": "Serialize a Google Keep note into a dictionary.\n    \n    Args:\n        note: A Google Keep note object\n        \n    Returns:\n        dict: A dictionary containing the note's id, title, text, pinned status, color and labels",
+          "decorators": [],
+          "start_line": 41,
+          "end_line": 58,
+          "is_async": false
+        },
+        {
+          "name": "can_modify_note",
+          "signature": "def can_modify_note(note)",
+          "parameters": "(note)",
+          "return_type": null,
+          "docstring": "Check if a note can be modified based on label and environment settings.\n    \n    Args:\n        note: A Google Keep note object\n        \n    Returns:\n        bool: True if the note can be modified, False otherwise",
+          "decorators": [],
+          "start_line": 60,
+          "end_line": 71,
+          "is_async": false
+        },
+        {
+          "name": "has_keep_mcp_label",
+          "signature": "def has_keep_mcp_label(note)",
+          "parameters": "(note)",
+          "return_type": null,
+          "docstring": "Check if a note has the keep-mcp label.\n    \n    Args:\n        note: A Google Keep note object\n        \n    Returns:\n        bool: True if the note has the keep-mcp label, False otherwise",
+          "decorators": [],
+          "start_line": 73,
+          "end_line": 83,
+          "is_async": false
+        }
+      ],
+      "parsedAt": 1769589321592
+    },
+    "src/server/rest_api.py": {
+      "path": "src/server/rest_api.py",
+      "contentHash": "31476a09c1abbd67014422567997803b",
+      "mtime": 1760262555413.707,
+      "functions": [
+        {
+          "name": "health_check",
+          "signature": "def health_check()",
+          "parameters": "()",
+          "return_type": null,
+          "docstring": "Health check endpoint that verifies Google Keep connection.",
+          "decorators": [
+            "@app.get(\"/health\", response_model=HealthResponse)",
+            "@app.get(\"/api/health\", response_model=HealthResponse)"
+          ],
+          "start_line": 61,
+          "end_line": 79,
+          "is_async": true
+        },
+        {
+          "name": "root",
+          "signature": "def root()",
+          "parameters": "()",
+          "return_type": null,
+          "docstring": "Root endpoint with API information.",
+          "decorators": [
+            "@app.get(\"/\")"
+          ],
+          "start_line": 83,
+          "end_line": 98,
+          "is_async": true
+        },
+        {
+          "name": "search_notes",
+          "signature": "def search_notes(query: str = \"\")",
+          "parameters": "(query: str = \"\")",
+          "return_type": null,
+          "docstring": "Search for notes matching the query string.\n\n    Args:\n        query: Search query string\n\n    Returns:\n        List of matching notes",
+          "decorators": [
+            "@app.get(\"/api/notes/search\")"
+          ],
+          "start_line": 102,
+          "end_line": 118,
+          "is_async": true
+        },
+        {
+          "name": "list_notes",
+          "signature": "def list_notes()",
+          "parameters": "()",
+          "return_type": null,
+          "docstring": "List all notes (non-archived, non-trashed).\n\n    Returns:\n        List of all notes",
+          "decorators": [
+            "@app.get(\"/api/notes\")"
+          ],
+          "start_line": 122,
+          "end_line": 129,
+          "is_async": true
+        },
+        {
+          "name": "get_note",
+          "signature": "def get_note(note_id: str)",
+          "parameters": "(note_id: str)",
+          "return_type": null,
+          "docstring": "Get a specific note by ID.\n\n    Args:\n        note_id: The ID of the note\n\n    Returns:\n        Note details",
+          "decorators": [
+            "@app.get(\"/api/notes/{note_id}\")"
+          ],
+          "start_line": 133,
+          "end_line": 154,
+          "is_async": true
+        },
+        {
+          "name": "create_note",
+          "signature": "def create_note(note: NoteCreateRequest)",
+          "parameters": "(note: NoteCreateRequest)",
+          "return_type": null,
+          "docstring": "Create a new note with title and text.\n\n    Args:\n        note: Note creation request with title and text\n\n    Returns:\n        Created note details",
+          "decorators": [
+            "@app.post(\"/api/notes\", response_model=NoteResponse)"
+          ],
+          "start_line": 158,
+          "end_line": 183,
+          "is_async": true
+        },
+        {
+          "name": "update_note",
+          "signature": "def update_note(note_id: str, note_update: NoteUpdateRequest)",
+          "parameters": "(note_id: str, note_update: NoteUpdateRequest)",
+          "return_type": null,
+          "docstring": "Update a note's title and/or text.\n\n    Args:\n        note_id: The ID of the note to update\n        note_update: Updated note data\n\n    Returns:\n        Updated note details",
+          "decorators": [
+            "@app.put(\"/api/notes/{note_id}\", response_model=NoteResponse)"
+          ],
+          "start_line": 187,
+          "end_line": 221,
+          "is_async": true
+        },
+        {
+          "name": "delete_note",
+          "signature": "def delete_note(note_id: str)",
+          "parameters": "(note_id: str)",
+          "return_type": null,
+          "docstring": "Delete a note (mark for deletion).\n\n    Args:\n        note_id: The ID of the note to delete\n\n    Returns:\n        Success message",
+          "decorators": [
+            "@app.delete(\"/api/notes/{note_id}\")"
+          ],
+          "start_line": 225,
+          "end_line": 254,
+          "is_async": true
+        }
+      ],
+      "parsedAt": 1769589321592
+    },
+    "src/server/standalone_http.py": {
+      "path": "src/server/standalone_http.py",
+      "contentHash": "c09f2d3d4c19b30105d61327c35f2cc3",
+      "mtime": 1760278811396.4885,
+      "functions": [
+        {
+          "name": "health_check",
+          "signature": "def health_check(request)",
+          "parameters": "(request)",
+          "return_type": null,
+          "docstring": "Health check endpoint for monitoring.",
+          "decorators": [
+            "@mcp.custom_route(\"/health\", [\"GET\"])"
+          ],
+          "start_line": 21,
+          "end_line": 37,
+          "is_async": true
+        },
+        {
+          "name": "api_health_check",
+          "signature": "def api_health_check(request)",
+          "parameters": "(request)",
+          "return_type": null,
+          "docstring": "Alternative health check endpoint.",
+          "decorators": [
+            "@mcp.custom_route(\"/api/health\", [\"GET\"])"
+          ],
+          "start_line": 40,
+          "end_line": 42,
+          "is_async": true
+        },
+        {
+          "name": "run_http_server",
+          "signature": "def run_http_server()",
+          "parameters": "()",
+          "return_type": null,
+          "docstring": "Run the Google Keep MCP server with HTTP transport and health endpoint.",
+          "decorators": [],
+          "start_line": 44,
+          "end_line": 68,
+          "is_async": true
+        }
+      ],
+      "parsedAt": 1769589321592
+    },
+    "use_oauth_token.py": {
+      "path": "use_oauth_token.py",
+      "contentHash": "cbd098152787b7e2af3da85c21760f36",
+      "mtime": 1751097215727.2808,
+      "functions": [
+        {
+          "name": "get_master_token_from_oauth",
+          "signature": "def get_master_token_from_oauth()",
+          "parameters": "()",
+          "return_type": null,
+          "docstring": null,
+          "decorators": [],
+          "start_line": 8,
+          "end_line": 58,
+          "is_async": false
+        }
+      ],
+      "parsedAt": 1769589321592
+    }
+  }
+}
