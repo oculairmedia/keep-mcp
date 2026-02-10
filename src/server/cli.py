@@ -4,6 +4,8 @@ Provides tools for interacting with Google Keep notes through MCP.
 """
 
 import json
+import asyncio
+import argparse
 from mcp.server.fastmcp import FastMCP
 from .keep_api import get_client, serialize_note, can_modify_note
 
@@ -112,10 +114,47 @@ def delete_note(note_id: str) -> str:
     keep.sync()  # Ensure deletion is saved to the server
     return json.dumps({"message": f"Note {note_id} marked for deletion"})
 
-def main():
-    mcp.run(transport='stdio')
+async def main():
+    """Main entry point with transport selection support."""
+    parser = argparse.ArgumentParser(description="Google Keep MCP Server")
+    parser.add_argument("--transport", 
+                       choices=["stdio", "sse", "http"], 
+                       default="stdio",
+                       help="Transport method to use (stdio, sse, or http)")
+    parser.add_argument("--host", 
+                       default="127.0.0.1",
+                       help="Host to bind to for SSE/HTTP transport")
+    parser.add_argument("--port", 
+                       type=int, 
+                       default=8000,
+                       help="Port to bind to for SSE/HTTP transport")
+    parser.add_argument("--path", 
+                       default="/mcp",
+                       help="Path for HTTP transport (default: /mcp)")
+    
+    args = parser.parse_args()
+    
+    if args.transport == "http":
+        print(f"Starting Google Keep MCP server with HTTP transport")
+        print(f"MCP endpoint: http://{args.host}:{args.port}/mcp/")
+        # Configure settings for HTTP transport
+        mcp.settings.host = args.host
+        mcp.settings.port = args.port
+        await mcp.run_streamable_http_async()
+    elif args.transport == "sse":
+        print(f"Starting Google Keep MCP server with SSE transport on {args.host}:{args.port}")
+        # Configure settings for SSE transport
+        mcp.settings.host = args.host
+        mcp.settings.port = args.port
+        await mcp.run_sse_async()
+    else:
+        print("Starting Google Keep MCP server with stdio transport")
+        await mcp.run_stdio_async()
 
+def main_sync():
+    """Synchronous wrapper for backward compatibility."""
+    asyncio.run(main())
 
 if __name__ == "__main__":
-    main()
+    main_sync()
     
